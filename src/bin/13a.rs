@@ -5,9 +5,9 @@ use anyhow::Context;
 use itertools::Itertools;
 
 type Field = BTreeSet<(i32, i32)>;
-type Operation<'a> = Vec<(&'a str, i32)>;
+type Operation<'a> = (&'a str, i32);
 
-fn parse(input: &str) -> anyhow::Result<(Field, Operation)> {
+fn parse(input: &str) -> anyhow::Result<(Field, Vec<Operation>)> {
     let mut dots = BTreeSet::new();
     let mut ops = vec![];
     for l in input.lines() {
@@ -60,7 +60,7 @@ fn fold_y(field: &Field, pos: i32) -> Field {
         .collect()
 }
 
-fn solve(mut field: Field, ops: &Operation) -> usize {
+fn solve(mut field: Field, ops: &[Operation]) -> usize {
     for &(dir, pos) in ops {
         field = match dir {
             "x" => fold_x(&field, pos),
