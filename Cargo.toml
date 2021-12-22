@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.51"
 derive_more = "0.99.17"
+indicatif = "0.16.2"
 itertools = "0.10.1"
 once_cell = "1.8.0"
 pretty_assertions = "1.0.0"
